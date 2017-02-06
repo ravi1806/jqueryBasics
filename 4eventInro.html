@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery Event Handling</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="jquery-3.1.1.js"></script>
+    <script type="text/javascript">
+
+        $("document").ready(function() {
+            $("#example").on("mousemove", onMouseOver);
+            $("#example").on("click", onMouseClick);
+            $("#example").on("mouseleave", onMouseLeave);
+        });
+
+        function onMouseOver(evt) {
+
+          //evt.which will give u the button presses i.e 1 for left, 2 for scroll butt, 3 for right click..
+          //We could have done the same using evt.button but its not recommended to do so,
+          //event.which also normalizes button presses (mousedown and mouseupevents), reporting 1 for left button, 2 for middle, and 3 for right.
+          //Use event.which instead of event.button.
+          //metakey will be true if u press and hold windows/mac button.
+            $("#example").text(evt.type + ": " + evt.pageX + ", " + evt.pageY + "\n" +
+                              "Button: " + evt.which + " Key: " + evt.metaKey);
+
+        }
+        function onMouseClick(evt) {
+            $("#example").text(evt.type + ": " + evt.pageX + ", " + evt.pageY);
+            $("#example").off("mousemove", onMouseOver);
+        }
+        function onMouseLeave(evt) {
+            $("#example").text("mouseleave");
+        }
+    </script>
+</head>
+
+<body>
+    <h1>jQuery Event Handling</h1>
+    <div id="content">
+
+        <p>jQuery normalizes an event structure across browsers and provides cross-browser consistency for properties such as
+            the event name, the page coordinates of the mouse, the element where the event originated along with any other
+            element related to the event, and information such as whether a meta-key or specific mouse button was pressed.</p>
+        <div id="example">
+        </div>
+    </div>
+</body>
+
+</html>
