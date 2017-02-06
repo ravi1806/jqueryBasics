@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>First jQuery-Enabled Page</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- insert the script to reference jQuery here -->
+    <script src="jquery-3.1.1.js"></script>
+    <!-- insert the script to display the Hello World message here -->
+    <script type='text/javascript'>
+    // .document tells we going to do aciton on the page itself.
+    // onload fires only after all of the contents (images/files) are loaded, but ready passes much early
+    //as soon as the page's Document Object Model (DOM) becomes safe to manipulate.
+    //This will often be a good time to perform tasks that are needed before the user views or interacts with the page,
+    //for example to add event handlers and initialize plugins. When multiple functions are added via successive calls to this method,
+    //they run when the DOM is ready in the order in which they are added. As of jQuery 3.0,
+    //jQuery ensures that an exception occuring in one handler does not prevent subsequently added handlers from executing.
+
+
+      $(`document`).ready(()=>{
+        $(`#content`).append(`<p>The page just loaded</p>`);
+      })
+    </script>
+</head>
+
+<body>
+    <h1>First jQuery Page</h1>
+    <div id="content">
+        <!-- we start with an empty document -->
+    </div>
+</body>
+
+</html>
