@@ -5,6 +5,26 @@
   <title>HPlus Sport</title>
   <link rel="stylesheet" href="css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../jquery-3.1.1.js" ></script>
+  <script type="text/javascript">
+    $(`document`).ready(() => {
+      //This will apply the callback fn on h2 when mouse hovers over the parent of h2, i.e .product-item
+      // $(`.product-item h2[data-type=vitamin]`).parent().mouseover(()=>{
+      //   $(`li h2`).css(`background-color`,`purple`);
+      // });
+      // $(`.product-item h2[data-type=proteinbar]`).parent().mouseover(()=>{
+      //   $(`li h2`).css(`background-color`,`orange`);
+      // });
+      // $(`.product-item h2[data-type=mineralwater]`).parent().mouseover(()=>{
+      //   $(`li h2`).css(`background-color`,`green`);
+      // });
+
+      $(`#products h2[data-type=mineralwater]`).css(`background-color`,`green`);
+      $(`#products h2[data-type=proteinbar]`).css(`background-color`,`blue`);
+      $(`#products h2[data-type=vitamin]`).css(`background-color`,`aqua`);
+
+    });
+  </script>
 </head>
 <body>
 
