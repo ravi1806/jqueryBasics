@@ -19,10 +19,54 @@
       //   $(`li h2`).css(`background-color`,`green`);
       // });
 
-      $(`#products h2[data-type=mineralwater]`).css(`background-color`,`green`);
+      $(`#products h2[data-type=mineralwater]`).css(`background-color`,`green`); //look for h2 inside product id.
       $(`#products h2[data-type=proteinbar]`).css(`background-color`,`blue`);
       $(`#products h2[data-type=vitamin]`).css(`background-color`,`aqua`);
 
+    /* //My soln for toggling
+      document.querySelector(`#cbVitamins`).addEventListener(`change`,function(evt){vitaminCb();});
+      document.querySelector(`#cbMineralWater`).addEventListener(`change`,function(evt){waterCb();});
+      document.querySelector(`#cbProtein`).addEventListener(`change`,function(evt){proteinCb();});
+        function vitaminCb() {
+          $(`h2[data-type=vitamin]`).parent().toggle(); //we need to toggle the entire li
+        }
+        function waterCb() {
+          $(`h2[data-type=mineralwater]`).parent().toggle();
+        }
+        function proteinCb() {
+          $(`h2[data-type=proteinbar]`).parent().toggle();
+        } */
+
+      //Expected soln
+      document.querySelector(`#cbMineralWater`).addEventListener(`change`,function(evt){updateView(`mineralwater`,evt.target.checked);});
+      document.querySelector(`#cbProtein`).addEventListener(`change`,function(evt){updateView(`proteinbar`,evt.target.checked);});
+      document.querySelector(`#cbVitamins`).addEventListener(`change`,function(evt){updateView(`vitamins`,evt.target.checked);});
+
+      function updateView(product, evtStatus){
+        console.log(evtStatus);
+        //get a list of the product items for the given category
+        //use the data attributes to narrow the list
+
+        let dataSelectorVal = ``;
+
+        switch (product){
+          case `mineralwater`:
+            dataSelectorVal = `h2[data-type='mineralwater']`;
+            break;
+          case `proteinbar`:
+            dataSelectorVal = `h2[data-type='proteinbar']`;
+            break;
+          case `vitamins`:
+            dataSelectorVal = `h2[data-type='vitamin']`;
+            break;
+        }
+
+        //use .has() to select li tags that are product-item
+        //that contain h2 tag with corrrespongin value in switch case above
+        //evt.target.checked (ectStatus) will either be true or false, if it is checked keep display as empty string else make it disappear.
+        $(`.product-item`).has(dataSelectorVal).css(`display`,evtStatus ? ``:`none`);
+
+      }
     });
   </script>
 </head>
@@ -66,6 +110,21 @@
     <h2 class="headline">Products</h2>
     <p>H+ Sport is <em>dedicated to creating</em> eco-friendly, high-quality, nutrient-rich, nutritional products that <em>enhance active lifestyles</em>. We <a href="#guarantee">guarantee</a> it. Take a look at some of our products.</p>
   </div><!-- container -->
+
+  <div id="productControls">
+     <form>
+         <div>
+             <span>Show: </span>
+             <input id="cbVitamins" type="checkbox" checked="checked" />
+             <label for="cbVitamins">Vitamins </label>
+             <input id="cbMineralWater" type="checkbox" checked="checked" />
+             <label for="cbMineralWater">Mineral Water </label>
+             <input id="cbProtein" type="checkbox" checked="checked" />
+             <label for="cbProtein">Protein Bars </label>
+         </div>
+     </form>
+ </div>
+
   <ul class="product-list">
     <li class="product-item" data-prod_id="V-A1037">
         <img class="product-image" src="images/products/vitamin-a.jpg" alt="Vitamin A - Product Photo">
