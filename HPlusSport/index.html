@@ -69,13 +69,14 @@
       }
 
        $(`.product-item`).each(function(){
-         const prodName = encodeURIComponent($(this).children(`h2`).text()); //encodeURIComponent to convert any characters that arent allowed to peer into URL
-         const prodId = encodeURIComponent($(this).data(`prod_id`));
+         var prodName = encodeURIComponent($(this).children(`h2`).text()); //encodeURIComponent to convert any characters that arent allowed to peer into URL
+         var prodID = encodeURIComponent($(this).data(`prod_id`));
 
-         const link = $(`<a href=product.html?prodName=`+prodName+`&prodId=`+prodId+`/>`);
+         var link = $(`<a href=product.html?prodName=`+prodName+`&prodID=`+prodID+`/>`);
 
          $(this).children(`img`).wrap(link);
        });
+      
     });
   </script>
 </head>
